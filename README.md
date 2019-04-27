@@ -4,7 +4,7 @@ The primary handler for mapping different configuration types to different Conta
 
 
 Supported carrier Contactable implementations so far: 
-- `phone` -> `Textable`, will speak to and listen to someone at a given phone number, via [Twilio](https://www.twilio.com/) APIs
+- [rsf-textable](https://github.com/rapid-sensemaking-framework/rsf-textable): `phone` -> `Textable`, will speak to and listen to someone at a given phone number, via [Twilio](https://www.twilio.com/) APIs
 
 
 ## API
