@@ -1,14 +1,14 @@
-const makeContactable = (person_config) => {
+const makeContactable = (personConfig) => {
     const { Textable, TYPE_KEY: TEXT_TYPE_KEY } = require('rsf-textable')
 
     let Contactable
-    switch (person_config.type) {
+    switch (personConfig.type) {
         case (TEXT_TYPE_KEY):
             Contactable = Textable
         // extend to different types here
         // hopefully email, first of all
     }
-    return new Contactable(person_config.id, person_config.name)
+    return new Contactable(personConfig.id, personConfig.name)
 }
 module.exports.makeContactable = makeContactable
 

@@ -14,8 +14,11 @@ Supported carrier Contactable implementations so far:
 The primary mapping function from configuration to real implementation of a Contactable
 
 `personConfig`: `PersonConfig`, ...
+
 `PersonConfig.type`: `String`, the type of Contactable to map this person into, e.g. 'phone'
+
 `PersonConfig.id`: `String`, the FULL identifying information required to contact this person via the given `type`
+
 `PersonConfig.name`: `String`, optional, a name of the person
 
 `result`: `Contactable`, an instance of an object/class with methods `.speak(text)` and `.listen(callback)` such that bi-directional communication is possible
