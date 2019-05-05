@@ -1,10 +1,13 @@
 const makeContactable = (personConfig) => {
     const { Textable, TYPE_KEY: TEXT_TYPE_KEY } = require('rsf-textable')
+    const { Mattermostable, TYPE_KEY: MATTERMOST_TYPE_KEY } = require('rsf-mattermostable')
 
     let Contactable
     switch (personConfig.type) {
         case (TEXT_TYPE_KEY):
             Contactable = Textable
+        case (MATTERMOST_TYPE_KEY):
+            Contactable = Mattermostable
         // extend to different types here
         // hopefully email, first of all
     }

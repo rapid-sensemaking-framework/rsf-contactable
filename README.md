@@ -5,6 +5,7 @@ The primary handler for mapping different configuration types to different Conta
 
 Supported carrier Contactable implementations so far: 
 - [rsf-textable](https://github.com/rapid-sensemaking-framework/rsf-textable): `phone` -> `Textable`, will speak to and listen to someone at a given phone number, via [Twilio](https://www.twilio.com/) APIs
+- [rsf-mattermostable](https://github.com/rapid-sensemaking-framework/rsf-mattermostable): `mattermost` -> `Mattermostable`, will speak and listen to someone at a given username at a given Mattermost server
 
 
 ## API
@@ -15,7 +16,7 @@ The primary mapping function from configuration to real implementation of a Cont
 
 `personConfig`: `PersonConfig`, ...
 
-`PersonConfig.type`: `String`, the type of Contactable to map this person into, e.g. 'phone'
+`PersonConfig.type`: `String`, the type of Contactable to map this person into, e.g. 'phone', 'mattermost'
 
 `PersonConfig.id`: `String`, the FULL identifying information required to contact this person via the given `type`
 
