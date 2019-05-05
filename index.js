@@ -6,8 +6,10 @@ const makeContactable = (personConfig) => {
     switch (personConfig.type) {
         case (TEXT_TYPE_KEY):
             Contactable = Textable
+            break
         case (MATTERMOST_TYPE_KEY):
             Contactable = Mattermostable
+            break
         // extend to different types here
         // hopefully email, first of all
     }
