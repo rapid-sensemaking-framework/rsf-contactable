@@ -1,6 +1,6 @@
 {
   "name": "rsf-contactable",
-  "version": "0.0.7",
+  "version": "0.0.71",
   "description": "the primary handler for mapping different configuration types to different Contactable carrier implementations",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
-    "rsf-mattermostable": "0.0.1",
+    "rsf-mattermostable": "0.0.11",
     "rsf-textable": "0.0.15"
   }
 }
