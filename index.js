@@ -1,7 +1,15 @@
-const makeContactable = (personConfig) => {
-    const { Textable, TYPE_KEY: TEXT_TYPE_KEY } = require('rsf-textable')
-    const { Mattermostable, TYPE_KEY: MATTERMOST_TYPE_KEY } = require('rsf-mattermostable')
+const tx, { Textable, TYPE_KEY: TEXT_TYPE_KEY } = require('rsf-textable')
+const mm, { Mattermostable, TYPE_KEY: MATTERMOST_TYPE_KEY } = require('rsf-mattermostable')
 
+const init = (mattermostBotDetails = '', twilioConfig) => {
+    // MATTERMOST
+    mm.init(mattermostBotDetails)
+    // TWILIO
+    if (twilioConfig) tx.init(twilioConfig)
+}
+module.exports.init = init
+
+const makeContactable = (personConfig) => {
     let Contactable
     switch (personConfig.type) {
         case (TEXT_TYPE_KEY):

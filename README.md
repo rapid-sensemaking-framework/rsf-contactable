@@ -10,6 +10,23 @@ Supported carrier Contactable implementations so far:
 
 ## API
 
+### `init(mattermostBotDetails, twilioConfig)` -> result: null`
+
+Initialize the contactable systems with configuration details
+
+`mattermostBotDetails`: `String`, should look like https://chat.server.url.org@@chatbotemail@whatever.com@@chatbotpassword@@@...
+
+`twilioConfig`: `TwilioConfig`, configuration details for rsf-textable
+
+`TwilioConfig.port`        : `Number`, the port on which to temporarily run the server
+
+`TwilioConfig.senderNumber`: `String`, the phone number associated with the twilio account, formatted like +12223334444
+
+`TwilioConfig.accountSid`  : `String`, the account sid value taken from twilio
+
+`TwilioConfig.authToken`   : `String`, the secret token given by twilio
+
+
 ### `makeContactable(personConfig) -> result: Contactable`
 
 The primary mapping function from configuration to real implementation of a Contactable
