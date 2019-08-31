@@ -36,6 +36,7 @@ const newMockMakeContactable = (spyCreator) => {
                 // override listenCb
                 listenCb = cb
             },
+            stopListening: () => {},
             // force call to listenCb
             trigger: text => listenCb(text)
         }
