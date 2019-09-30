@@ -6,11 +6,11 @@ The primary handler for mapping different configuration types to different Conta
 Supported carrier Contactable implementations so far: 
 - [rsf-textable](https://github.com/rapid-sensemaking-framework/rsf-textable): `phone` -> `Textable`, will speak to and listen to someone at a given phone number, via [Twilio](https://www.twilio.com/) APIs
 - [rsf-mattermostable](https://github.com/rapid-sensemaking-framework/rsf-mattermostable): `mattermost` -> `Mattermostable`, will speak and listen to someone at a given username at a given Mattermost server
-
+- [rsf-telegramable](https://github.com/rapid-sensemaking-framework/rsf-telegramable): `telegram` -> `Telegramable`, will speak and listen to someone at a given username on Telegram
 
 ## API
 
-### `init(mattermostBotDetails, twilioConfig)` -> result: null`
+### `init(mattermostBotDetails, twilioConfig, telegramConfig)` -> result: null`
 
 Initialize the contactable systems with configuration details
 
@@ -25,6 +25,8 @@ Initialize the contactable systems with configuration details
 `TwilioConfig.accountSid`  : `String`, the account sid value taken from twilio
 
 `TwilioConfig.authToken`   : `String`, the secret token given by twilio
+
+`telegramConfig`: `String`, simply the token for the telegram bot
 
 
 ### `makeContactable(personConfig) -> result: Contactable`
