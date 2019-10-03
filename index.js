@@ -37,20 +37,25 @@ const init = (mattermostBotDetails = '', twilioConfig, telegramConfig) => {
 }
 module.exports.init = init
 
-const shutdown = async () => {
+const shutdown = () => {
     console.log('rsf-contactable performing shutdown')
     const shutdowns = []
-    shutdowns.push(mattermostableShutdown())
+    shutdowns.push(mattermostableShutdown().then(() => {
+        mattermost = false
+    }))
     if (twilio) {
-        shutdowns.push(textableShutdown())
+        shutdowns.push(textableShutdown().then(() => {
+            twilio = false
+        }))
     }
     if (telegram) {
-        shutdowns.push(telegramableShutdown())
+        shutdowns.push(telegramableShutdown().then(() => {
+            telegram = false
+        }))
     }
-    await Promise.all(shutdowns)
-    mattermost = false
-    twilio = false
-    telegram = false
+    return Promise.all(shutdowns).then(() => {
+        console.log('rsf-contactable shutdown completed successfully')
+    })
 }
 module.exports.shutdown = shutdown
 
