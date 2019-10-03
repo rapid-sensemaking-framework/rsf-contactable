@@ -1,16 +1,58 @@
-const { init: textableInit, Textable, TYPE_KEY: TEXT_TYPE_KEY } = require('rsf-textable')
-const { init: mattermostableInit, Mattermostable, TYPE_KEY: MATTERMOST_TYPE_KEY } = require('rsf-mattermostable')
-const { init: telegramableInit, Telegramable, TYPE_KEY: TELEGRAM_TYPE_KEY } = require('rsf-telegramable')
+const {
+    init: textableInit,
+    Textable,
+    TYPE_KEY: TEXT_TYPE_KEY,
+    shutdown: textableShutdown
+} = require('rsf-textable')
+const {
+    init: mattermostableInit,
+    Mattermostable,
+    TYPE_KEY: MATTERMOST_TYPE_KEY,
+    shutdown: mattermostableShutdown
+} = require('rsf-mattermostable')
+const {
+    init: telegramableInit,
+    Telegramable,
+    TYPE_KEY: TELEGRAM_TYPE_KEY,
+    shutdown: telegramableShutdown
+} = require('rsf-telegramable')
 
+let twilio, telegram, mattermost
 const init = (mattermostBotDetails = '', twilioConfig, telegramConfig) => {
+    const initializers = []
     // MATTERMOST
-    mattermostableInit(mattermostBotDetails)
+    initializers.push(mattermostableInit(mattermostBotDetails))
+    mattermost = true
     // TWILIO
-    if (twilioConfig) textableInit(twilioConfig)
+    if (twilioConfig) {
+        initializers.push(textableInit(twilioConfig))
+        twilio = true
+    }
     // TELEGRAM
-    if (telegramConfig) telegramableInit(telegramConfig)
+    if (telegramConfig) {
+        initializers.push(telegramableInit(telegramConfig))
+        telegram = true
+    }
+    return Promise.all(initializers)
 }
 module.exports.init = init
+
+const shutdown = async () => {
+    console.log('rsf-contactable performing shutdown')
+    const shutdowns = []
+    shutdowns.push(mattermostableShutdown())
+    if (twilio) {
+        shutdowns.push(textableShutdown())
+    }
+    if (telegram) {
+        shutdowns.push(telegramableShutdown())
+    }
+    await Promise.all(shutdowns)
+    mattermost = false
+    twilio = false
+    telegram = false
+}
+module.exports.shutdown = shutdown
 
 const makeContactable = (personConfig) => {
     let Contactable
