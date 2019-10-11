@@ -15,6 +15,6 @@
   "dependencies": {
     "rsf-mattermostable": "1.0.14",
     "rsf-textable": "1.0.17",
-    "rsf-telegramable": "1.0.4"
+    "rsf-telegramable": "1.0.6"
   }
 }
