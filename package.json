@@ -13,7 +13,7 @@
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
-    "rsf-mattermostable": "1.0.14",
+    "rsf-mattermostable": "1.0.15",
     "rsf-textable": "1.0.17",
     "rsf-telegramable": "1.0.7"
   }
