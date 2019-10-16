@@ -18,21 +18,21 @@ const {
 } = require('rsf-telegramable')
 
 let twilio, telegram, mattermost
-const init = (mattermostConfig, twilioConfig, telegramConfig) => {
+const init = ({ doMattermost, doText, doTelegram }, { mattermostable, textable, telegramable }) => {
     const initializers = []
     // MATTERMOST
-    if (mattermostConfig) {
-        initializers.push(mattermostableInit(mattermostConfig))
+    if (doMattermost) {
+        initializers.push(mattermostableInit(mattermostable))
         mattermost = true
     }
     // TWILIO
-    if (twilioConfig) {
-        initializers.push(textableInit(twilioConfig))
+    if (doText) {
+        initializers.push(textableInit(textable))
         twilio = true
     }
     // TELEGRAM
-    if (telegramConfig) {
-        initializers.push(telegramableInit(telegramConfig))
+    if (doTelegram) {
+        initializers.push(telegramableInit(telegramable))
         telegram = true
     }
     return Promise.all(initializers)
