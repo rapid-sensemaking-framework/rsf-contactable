@@ -18,11 +18,13 @@ const {
 } = require('rsf-telegramable')
 
 let twilio, telegram, mattermost
-const init = (mattermostBotDetails = '', twilioConfig, telegramConfig) => {
+const init = (mattermostConfig, twilioConfig, telegramConfig) => {
     const initializers = []
     // MATTERMOST
-    initializers.push(mattermostableInit(mattermostBotDetails))
-    mattermost = true
+    if (mattermostConfig) {
+        initializers.push(mattermostableInit(mattermostConfig))
+        mattermost = true
+    }
     // TWILIO
     if (twilioConfig) {
         initializers.push(textableInit(twilioConfig))
@@ -40,9 +42,11 @@ module.exports.init = init
 const shutdown = () => {
     console.log('rsf-contactable performing shutdown')
     const shutdowns = []
-    shutdowns.push(mattermostableShutdown().then(() => {
-        mattermost = false
-    }))
+    if (mattermost) {
+        shutdowns.push(mattermostableShutdown().then(() => {
+            mattermost = false
+        }))
+    }
     if (twilio) {
         shutdowns.push(textableShutdown().then(() => {
             twilio = false

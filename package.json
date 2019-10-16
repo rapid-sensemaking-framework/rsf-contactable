@@ -1,6 +1,6 @@
 {
   "name": "rsf-contactable",
-  "version": "1.0.82",
+  "version": "1.0.83",
   "description": "the primary handler for mapping different configuration types to different Contactable carrier implementations",
   "main": "index.js",
   "scripts": {
