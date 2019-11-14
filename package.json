@@ -4,7 +4,7 @@
   "description": "the primary handler for mapping different configuration types to different Contactable carrier implementations",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,9 @@
   "license": "GPL-3.0",
   "dependencies": {
     "rsf-mattermostable": "1.0.15",
+    "rsf-telegramable": "1.0.7",
     "rsf-textable": "1.0.17",
-    "rsf-telegramable": "1.0.7"
+    "rsf-types": "0.0.26",
+    "typescript": "^3.7.2"
   }
 }
