@@ -79,6 +79,12 @@ const makeContactable = (personConfig: ContactableConfig): Contactable => {
       return new Mattermostable(personConfig.id, personConfig.name)
     case (TELEGRAM_TYPE_KEY):
       return new Telegramable(personConfig.id, personConfig.name)
+    default:
+      let errorString: string = ''
+      const validTypes = [TEXT_TYPE_KEY, MATTERMOST_TYPE_KEY, TELEGRAM_TYPE_KEY]
+      errorString += `Invalid type key for ContactableConfig: ${JSON.stringify(personConfig)}.`
+      errorString += ` Valid types are ${validTypes.join(', ')}.`
+      throw new Error(errorString)
     // extend to different types here
     // hopefully email, first of all
   }

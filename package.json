@@ -1,9 +1,10 @@
 {
   "name": "rsf-contactable",
-  "version": "1.0.85",
+  "version": "1.0.87",
   "description": "the primary handler for mapping different configuration types to different Contactable carrier implementations",
   "main": "index.js",
   "scripts": {
+    "test": "mocha",
     "build": "tsc --build"
   },
   "repository": {
@@ -14,9 +15,14 @@
   "license": "GPL-3.0",
   "dependencies": {
     "rsf-mattermostable": "1.0.15",
-    "rsf-telegramable": "1.0.7",
-    "rsf-textable": "1.0.17",
+    "rsf-telegramable": "1.0.82",
+    "rsf-textable": "1.0.19",
     "rsf-types": "0.0.26",
     "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "sinon": "^7.5.0"
   }
 }

@@ -101,6 +101,12 @@ var makeContactable = function (personConfig) {
             return new rsf_mattermostable_1.Mattermostable(personConfig.id, personConfig.name);
         case (rsf_telegramable_1.TYPE_KEY):
             return new rsf_telegramable_1.Telegramable(personConfig.id, personConfig.name);
+        default:
+            var errorString = '';
+            var validTypes = [rsf_textable_1.TYPE_KEY, rsf_mattermostable_1.TYPE_KEY, rsf_telegramable_1.TYPE_KEY];
+            errorString += "Invalid type key for ContactableConfig: " + JSON.stringify(personConfig) + ".";
+            errorString += " Valid types are " + validTypes.join(', ') + ".";
+            throw new Error(errorString);
         // extend to different types here
         // hopefully email, first of all
     }
