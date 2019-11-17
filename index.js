@@ -36,13 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var rsf_textable_1 = require("rsf-textable");
+var rsf_smsable_1 = require("rsf-smsable");
 var rsf_mattermostable_1 = require("rsf-mattermostable");
 var rsf_telegramable_1 = require("rsf-telegramable");
-var twilio, telegram, mattermost;
+var sms, telegram, mattermost;
 var init = function (contactableSpecifyInit, contactableInitConfig) {
-    var doMattermost = contactableSpecifyInit.doMattermost, doText = contactableSpecifyInit.doText, doTelegram = contactableSpecifyInit.doTelegram;
-    var mattermostable = contactableInitConfig.mattermostable, textable = contactableInitConfig.textable, telegramable = contactableInitConfig.telegramable;
+    var doMattermost = contactableSpecifyInit.doMattermost, doSms = contactableSpecifyInit.doSms, doTelegram = contactableSpecifyInit.doTelegram;
+    var mattermostable = contactableInitConfig.mattermostable, smsable = contactableInitConfig.smsable, telegramable = contactableInitConfig.telegramable;
     var initializers = [];
     // MATTERMOST
     if (doMattermost) {
@@ -50,9 +50,9 @@ var init = function (contactableSpecifyInit, contactableInitConfig) {
         mattermost = true;
     }
     // TWILIO
-    if (doText) {
-        initializers.push(rsf_textable_1.init(textable));
-        twilio = true;
+    if (doSms) {
+        initializers.push(rsf_smsable_1.init(smsable));
+        sms = true;
     }
     // TELEGRAM
     if (doTelegram) {
@@ -74,9 +74,9 @@ var shutdown = function () { return __awaiter(void 0, void 0, void 0, function (
                         mattermost = false;
                     }));
                 }
-                if (twilio) {
-                    shutdowns.push(rsf_textable_1.shutdown().then(function () {
-                        twilio = false;
+                if (sms) {
+                    shutdowns.push(rsf_smsable_1.shutdown().then(function () {
+                        sms = false;
                     }));
                 }
                 if (telegram) {
@@ -95,15 +95,15 @@ var shutdown = function () { return __awaiter(void 0, void 0, void 0, function (
 exports.shutdown = shutdown;
 var makeContactable = function (personConfig) {
     switch (personConfig.type) {
-        case (rsf_textable_1.TYPE_KEY):
-            return new rsf_textable_1.Textable(personConfig.id, personConfig.name);
+        case (rsf_smsable_1.TYPE_KEY):
+            return new rsf_smsable_1.Smsable(personConfig.id, personConfig.name);
         case (rsf_mattermostable_1.TYPE_KEY):
             return new rsf_mattermostable_1.Mattermostable(personConfig.id, personConfig.name);
         case (rsf_telegramable_1.TYPE_KEY):
             return new rsf_telegramable_1.Telegramable(personConfig.id, personConfig.name);
         default:
             var errorString = '';
-            var validTypes = [rsf_textable_1.TYPE_KEY, rsf_mattermostable_1.TYPE_KEY, rsf_telegramable_1.TYPE_KEY];
+            var validTypes = [rsf_smsable_1.TYPE_KEY, rsf_mattermostable_1.TYPE_KEY, rsf_telegramable_1.TYPE_KEY];
             errorString += "Invalid type key for ContactableConfig: " + JSON.stringify(personConfig) + ".";
             errorString += " Valid types are " + validTypes.join(', ') + ".";
             throw new Error(errorString);

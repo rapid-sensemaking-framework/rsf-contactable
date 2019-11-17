@@ -3,11 +3,11 @@ import {
 } from 'rsf-types'
 
 import {
-  init as textableInit,
-  Textable,
+  init as smsableInit,
+  Smsable,
   TYPE_KEY as TEXT_TYPE_KEY,
-  shutdown as textableShutdown
-} from 'rsf-textable'
+  shutdown as smsableShutdown
+} from 'rsf-smsable'
 
 import {
   init as mattermostableInit,
@@ -23,13 +23,13 @@ import {
   shutdown as telegramableShutdown
 } from 'rsf-telegramable'
 
-let twilio: boolean, telegram: boolean, mattermost: boolean
+let sms: boolean, telegram: boolean, mattermost: boolean
 const init = (
   contactableSpecifyInit: ContactableSpecifyInit,
   contactableInitConfig: ContactableInitConfig
 ) => {
-  const { doMattermost, doText, doTelegram } = contactableSpecifyInit
-  const { mattermostable, textable, telegramable } = contactableInitConfig
+  const { doMattermost, doSms, doTelegram } = contactableSpecifyInit
+  const { mattermostable, smsable, telegramable } = contactableInitConfig
   const initializers = []
   // MATTERMOST
   if (doMattermost) {
@@ -37,9 +37,9 @@ const init = (
     mattermost = true
   }
   // TWILIO
-  if (doText) {
-    initializers.push(textableInit(textable))
-    twilio = true
+  if (doSms) {
+    initializers.push(smsableInit(smsable))
+    sms = true
   }
   // TELEGRAM
   if (doTelegram) {
@@ -57,9 +57,9 @@ const shutdown = async (): Promise<void> => {
       mattermost = false
     }))
   }
-  if (twilio) {
-    shutdowns.push(textableShutdown().then(() => {
-      twilio = false
+  if (sms) {
+    shutdowns.push(smsableShutdown().then(() => {
+      sms = false
     }))
   }
   if (telegram) {
@@ -74,7 +74,7 @@ const shutdown = async (): Promise<void> => {
 const makeContactable = (personConfig: ContactableConfig): Contactable => {
   switch (personConfig.type) {
     case (TEXT_TYPE_KEY):
-      return new Textable(personConfig.id, personConfig.name)
+      return new Smsable(personConfig.id, personConfig.name)
     case (MATTERMOST_TYPE_KEY):
       return new Mattermostable(personConfig.id, personConfig.name)
     case (TELEGRAM_TYPE_KEY):
