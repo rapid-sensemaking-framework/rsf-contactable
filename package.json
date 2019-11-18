@@ -15,7 +15,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "rsf-mattermostable": "1.0.15",
-    "rsf-telegramable": "1.0.82",
+    "rsf-telegramable": "1.0.83",
     "rsf-smsable": "1.0.21",
     "rsf-types": "0.0.27",
     "typescript": "^3.7.2"
