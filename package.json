@@ -14,10 +14,10 @@
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
-    "rsf-mattermostable": "1.0.15",
-    "rsf-telegramable": "1.0.83",
-    "rsf-smsable": "1.0.21",
-    "rsf-types": "0.0.27",
+    "rsf-mattermostable": "1.0.16",
+    "rsf-telegramable": "1.0.84",
+    "rsf-smsable": "1.0.22",
+    "rsf-types": "0.0.32",
     "typescript": "^3.7.2"
   },
   "devDependencies": {

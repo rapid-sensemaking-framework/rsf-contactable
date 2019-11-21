@@ -105,8 +105,13 @@ const newMockMakeContactable = (spyCreator) => {
       stopListening: () => {
         listenCb = defaultListen
       },
+      config: () => ({
+        type: "test",
+        id: person_config.id,
+        name: person_config.name
+      }),
       // force call to listenCb
-      trigger: (text: string) => listenCb(text)
+      trigger: (text: string) => listenCb(text),
     }
     return newC
   }

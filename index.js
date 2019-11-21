@@ -126,6 +126,11 @@ var newMockMakeContactable = function (spyCreator) {
             stopListening: function () {
                 listenCb = defaultListen;
             },
+            config: function () { return ({
+                type: "test",
+                id: person_config.id,
+                name: person_config.name
+            }); },
             // force call to listenCb
             trigger: function (text) { return listenCb(text); }
         };

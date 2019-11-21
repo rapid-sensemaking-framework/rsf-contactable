@@ -7,6 +7,11 @@ declare const newMockMakeContactable: (spyCreator: any) => (person_config: Conta
     speak: any;
     listen: (cb: (text: string) => void) => void;
     stopListening: () => void;
+    config: () => {
+        type: string;
+        id: string;
+        name: string;
+    };
     trigger: (text: string) => void;
 };
 export { init, shutdown, makeContactable, newMockMakeContactable };
